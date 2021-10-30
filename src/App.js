@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
-import Entry from './components/Entry/Entry';
-import NameList from './components/NameList/NameList';
+import AddUser from './components/AddUser/AddUser';
+import UserList from './components/UserList/UserList';
+import ErrorModal from './components/UI/Modal/ErrorModal';
 import './App.css';
 
 function App() {
-  const [nameArr, setNameArr] = useState([]);
+  const [userArr, setUserArr] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const showModalHandler = (isInvalid) => setShowModal(isInvalid);
 
   const addToList = (newItem) => {
-    setNameArr((prevNameArr) => [newItem, ...prevNameArr]);
+    setUserArr((prevUserArr) => [newItem, ...prevUserArr]);
   };
 
   return (
     <div className='App'>
-      <Entry addToList={addToList} />
-      <NameList items={nameArr} />
+      {showModal && (
+        <ErrorModal
+          title='An error Occured!'
+          message='Please enter a valid name '
+          displayModal={showModalHandler}
+        />
+      )}
+      <AddUser addToList={addToList} displayModal={showModalHandler} />
+      <UserList items={userArr} />
     </div>
   );
 }

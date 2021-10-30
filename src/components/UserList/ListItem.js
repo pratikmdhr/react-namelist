@@ -1,9 +1,9 @@
 import React from 'react';
-import './NameList.css';
+import Style from './ListItem.module.css';
 
 const ListItem = ({ name, age }) => {
   return (
-    <li>
+    <li className={Style.list_item}>
       {name} ({age} years)
     </li>
   );

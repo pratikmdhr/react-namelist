@@ -1,15 +1,13 @@
 import React from 'react';
 import Card from '../UI/Card/Card';
 import ListItem from './ListItem';
-import './NameList.css';
 
-const NameList = (props) => {
-  console.log(props);
-  if (props.items.length === 0) return null;
+const UserList = ({ items }) => {
+  if (items.length === 0) return null;
   return (
     <Card>
       <ul>
-        {props.items.map((item) => (
+        {items.map((item) => (
           <ListItem name={item.name} age={item.age} key={item.key} />
         ))}
       </ul>
@@ -17,4 +15,4 @@ const NameList = (props) => {
   );
 };
 
-export default NameList;
+export default UserList;
